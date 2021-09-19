@@ -393,7 +393,7 @@ console.log(date_format_str);
 //2015-03-31 13:35:00
 
                 document.getElementById("time").innerHTML= "扫码时间： " + date_format_str;
-                          
+                          document.body.style=null;
 
  document.getElementById("begin").innerHTML="开始 "+new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0];
                           document.getElementById("over").innerHTML="结束 "+new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0];</script></body></html>
