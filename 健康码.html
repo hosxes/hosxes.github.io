@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)https://app.ucass.edu.cn/site/epidehealth/masterqrcode?door_id=17 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="renderer" content="webkit"><meta http-equiv="X-UA-Compatible" content="IE=EDGE"><title>健康码</title><style>body {
+			-webkit-text-size-adjust: 100% !important;
+		}
+		html,
+		body,
+		div,
+		span,
+		applet,
+		object,
+		iframe,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p,
+		blockquote,
+		pre,
+		a,
+		abbr,
+		acronym,
+		address,
+		big,
+		cite,
+		code,
+		del,
+		dfn,
+		em,
+		font,
+		img,
+		ins,
+		kbd,
+		q,
+		s,
+		samp,
+		small,
+		strike,
+		strong,
+		sub,
+		sup,
+		tt,
+		var,
+		b,
+		u,
+		i,
+		center,
+		dl,
+		dt,
+		dd,
+		ol,
+		ul,
+		li,
+		fieldset,
+		form,
+		label,
+		legend,
+		table,
+		caption,
+		tbody,
+		tfoot,
+		thead,
+		tr,
+		th,
+		td,
+		article,
+		aside,
+		canvas,
+		details,
+		embed,
+		figure,
+		figcaption,
+		footer,
+		header,
+		hgroup,
+		menu,
+		nav,
+		output,
+		ruby,
+		section,
+		summary,
+		time,
+		mark,
+		audio,
+		video,
+		button,
+		input,
+		textarea {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		header,
+		footer,
+		section,
+		article,
+		aside,
+		nav,
+		hgroup,
+		address,
+		figure,
+		figcaption,
+		menu,
+		details {
+			display: block;
+		}
+
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		caption,
+		th {
+			font-weight: normal;
+		}
+
+		html,
+		body,
+		fieldset,
+		img,
+		iframe,
+		abbr {
+			border: 0;
+		}
+
+		i,
+		cite,
+		em,
+		var,
+		address,
+		dfn {
+			font-style: normal;
+		}
+
+		[hidefocus],
+		summary {
+			outline: 0;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		pre,
+		code,
+		kbd,
+		samp {
+			font-family: inherit;
+		}
+
+		q:before,
+		q:after {
+			content: none;
+		}
+
+		body,
+		textarea,
+		input,
+		button,
+		select,
+		keygen,
+		legend {
+			color: #333;
+			outline: 0;
+			font-family: PingFang-SC-Medium, 'microsoft yahei', sans-serif;
+		}
+
+		input,
+		textarea {
+			-webkit-appearance: none;
+			border: none;
+			outline: none;
+			background: none;
+			-webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+		}
+
+		textarea {
+			overflow: auto;
+			resize: none;
+		}
+
+		a,
+		button {
+			display: block;
+			background: none;
+			border: none;
+		}
+
+		a {
+			-webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+			outline: none;
+			text-decoration: none;
+		}
+
+		img {
+			display: block;
+		}
+		.fram-alert {
+			position: fixed;
+			left: 50%;
+			bottom: 0;
+			transform: translate(-50%, 0%);
+			top: 0;
+			background: rgba(49, 49, 49, 0.8);
+			z-index: 1000;
+		}
+
+		.fram-alert>div {
+			background: #fff;
+			color: #333;
+			font-size: 13px;
+			position: fixed;
+			top: 200px;
+			left: 50%;
+			border-radius: 2px;
+			transform: translate(-50%, 0);
+			opacity: 1;
+			transition: all 1s ease;
+			z-index: 999;
+			width: calc(100% - 80px);
+		}
+
+		.fram-alert>div p {
+			height: 86px;
+			margin: 0 20px;
+		}
+
+		.fram-alert>div p span {
+			display: block;
+			color: #333;
+			height: 43px;
+			line-height: 60px;
+		}
+
+		.fram-alert>div p span {
+			height: 100%;
+			line-height: 86px;
+		}
+
+		.fram-alert>div a {
+			display: block;
+			margin: 0 20px;
+			height: 36px;
+			line-height: 36px;
+			text-align: center;
+			color: #fff;
+			font-size: 14px;
+			border-radius: 2px;
+			margin-bottom: 23px;
+			background: #4285f4;
+
+		}
+
+		html {
+			background: #eee;
+		}
+
+		@media (max-width: 768px) {
+			body>div:first-child {
+				max-width: 768px;
+				margin: 0 auto;
+			}
+		}
+
+		@media (min-width: 769px) {
+			body {
+				margin: 0 auto !important;
+			}
+
+			body>div:first-child {
+				width: 100%;
+			}
+		}
+
+		#__vconsole {
+			font-size: 12px !important;
+		}
+
+		.page-load>div,
+		.file-pop>div {
+			min-width: 150px;
+			text-align: center;
+			min-height: 123px;
+			line-height: 123px;
+			background: rgba(51, 51, 51, 0.7);
+			color: #fff;
+			font-size: 15px;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			border-radius: 5px;
+			-webkit-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			opacity: 1;
+			z-index: 999;
+			max-width: 250px;
+			word-break: break-all;
+		}
+
+		.page-load>div img,
+		.file-pop>div img {
+			width: 55px;
+			height: 55px;
+			margin: 19px auto 10px;
+		}
+
+		.page-load>div p,
+		.file-pop>div p {
+			color: #fff;
+			font-size: 14px;
+			min-height: 14px;
+			line-height: 14px;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			padding: 0 10px;
+		}
+
+		.glable-nodata {
+			margin-top: 0 !important;
+			padding-top: 100px;
+			box-sizing: border-box;
+			text-align: center;
+		}
+
+		.glable-nodata img {
+			width: 200px;
+			height: 200px;
+			margin: 0 auto;
+		}
+
+		.glable-nodata p {
+			color: #878787;
+			font-size: 14px;
+			min-height: 14px;
+			line-height: 14px;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			padding: 0 10px;
+		}
+
+		html {
+			/*filter:grayscale(100%);*/
+		}</style><link rel="stylesheet" type="text/css" href="./健康码_files/font_1630811_ojjhdb6izfq.css"><link href="./健康码_files/app.598724d02dfe8543cbaea011522257eb.css" rel="stylesheet"><link data-id="6cf8f61d3927211d01d8f5b80044d177" href="./健康码_files/default.main.css" rel="stylesheet" type="text/css"><script type="text/javascript" charset="utf-8" async="" src="./健康码_files/0.9dd145e8728fdb38bec8.js.下载"></script><script type="text/javascript" charset="utf-8" async="" src="./健康码_files/497.c7e6a26c2408d1b58fa2.js.下载"></script><link type="image/png" href="./健康码_files/0cd8df8c8023a025d44c40931b50c7b3.jpg" rel="shortcut icon"></head><body style="width: 800px;"><div class="newQrcode" style="display: block;"><!----> <div><div class="epide_outer"><div class="logo"><div><img src="./健康码_files/0cd8df8c8023a025d44c40931b50c7b3.jpg" alt=""></div> <span>中国社会科学院大学</span></div> <div class="bjc"><img src="./健康码_files/mengceng2.png" alt=""> <div class="users"><ul><li><span>姓名</span><span>艾卓成</span></li> <li><span>学工号</span><span>S2021104002</span></li></ul> <ul><li style="width: 100%;"><span>单位</span><span>法学院</span></li></ul></div></div></div> <div class="content mastercontent"><div class="location_tit"><!----> <div class="qrcode-wrap master"><div class="title-master"><span class="left">通行码</span><span class="right"><em>扫码时间：2021-09-19 10:52:43</em></span></div> <div class="code_img qr-box qr-publice buaa_code_img" style="display: none;"><div class="border"><div id="qrcode" style="display: none;"></div> <span>二维码生成中...</span> <span style="display: none;">二维码生成失败，点击重新生成</span></div></div> <p class="code_img_text" style="display: none;">通行失败</p> <div class="bignocode-wrap"><!----> <img src="./健康码_files/err.png" alt=""> <!----> <!----> <!----> <p class="reds">通行失败</p></div></div> <div class="line"></div> <div class="buaaszwz"><div class="szwz-header"><span class="left">所在位置</span> <span class="right">望京校区-出</span></div></div> <div class="line"></div> <div class="other-foot"><span>出</span></div> <!----> <!----> <!----> <!----> <!----> <!----></div></div></div> <!----> <div data-v-3f5a7bce="" class="g-pop" appkey="healthcode" style="width: 800px; display: none;"><div data-v-3f5a7bce="" class="pophint"><img data-v-3f5a7bce="" src="https://app.ucass.edu.cn/site/epidehealth/masterqrcode?door_id=17" alt=""> <p data-v-3f5a7bce=""></p></div></div></div><script>if (window.location.href.indexOf("debug=1") !== -1) {
+			var jsScript = document.createElement("script");
+			jsScript.src = "/site/static/js/vconsole.min.js";
+			jsScript.type = "text/javascript";
+			jsScript.async = false;
+			jsScript.onload = function () {
+
+				var vConsole = new VConsole();
+			};
+			document.getElementsByTagName("body")[0].appendChild(jsScript);
+		}</script><script type="text/javascript" src="./健康码_files/manifest.d8da645c072d73942ee8.js.下载"></script><script type="text/javascript" src="./健康码_files/vendor.c5567c93b15a74a65c68.js.下载"></script><script type="text/javascript" src="./健康码_files/app.efd50920ae08c3ea492f.js.下载"></script><div tabindex="-1" role="dialog" aria-hidden="true" class="pswp"><div class="pswp__bg"></div> <div class="pswp__scroll-wrap"><div class="pswp__container"><div class="pswp__item"></div> <div class="pswp__item"></div> <div class="pswp__item"></div></div> <div class="pswp__ui pswp__ui--hidden"><div class="pswp__top-bar"><div class="pswp__counter"></div> <button title="Close (Esc)" class="pswp__button pswp__button--close"></button> <button title="Share" class="pswp__button pswp__button--share"></button> <button title="Toggle fullscreen" class="pswp__button pswp__button--fs"></button> <button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button> <div class="pswp__preloader"><div class="pswp__preloader__icn"><div class="pswp__preloader__cut"><div class="pswp__preloader__donut"></div></div></div></div></div> <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class="pswp__share-tooltip"></div></div> <button title="Previous (arrow left)" class="pswp__button pswp__button--arrow--left"></button> <button title="Next (arrow right)" class="pswp__button pswp__button--arrow--right"></button> <div class="pswp__caption"><div class="pswp__caption__center"></div></div></div></div></div><div id="progress_loading" style="display: none;"><div style="width: 0%;"></div></div><script src="./健康码_files/qrcode.js.下载" data-id="4e5017a9bf0ca5f834f2415e7714592b" type="text/javascript"></script><script src="./健康码_files/normal_socket.js.下载" data-id="9e3264ea20c759e1f362ca4267278029" type="text/javascript"></script><script src="./健康码_files/md5.js.下载"></script><script src="./健康码_files/getscript.js.下载"></script><script type="text/javascript">(function () {
+		function IEVersion() {
+			var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+			var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器
+			var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器
+			var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+			if (isIE) {
+				var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+				reIE.test(userAgent);
+				var fIEVersion = parseFloat(RegExp["$1"]);
+				if (fIEVersion == 7) {
+					return 7;
+				} else if (fIEVersion == 8) {
+					return 8;
+				} else if (fIEVersion == 9) {
+					return 9;
+				} else if (fIEVersion == 10) {
+					return 10;
+				} else {
+					return 6;//IE版本<=7
+				}
+			} else if (isEdge) {
+				return 'edge';//edge
+			} else if (isIE11) {
+				return 11; //IE11
+			} else {
+				return false;//不是ie浏览器
+			}
+		}
+		if (IEVersion() && IEVersion() != 'edge') {
+			if (window.location.href.indexOf('leaveshoolsq') > -1) {
+				document.body.innerHTML = '<div style="font-size: 20px;text-align: center;margin: 300px auto;">为了更好的浏览效果，请您使用较新版本的Chrome、Firefox、Safari进行访问</div>'
+			}
+		}
+		if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
+			handleFontSize();
+		} else {
+			if (document.addEventListener) {
+				document.addEventListener("WeixinJSBridgeReady", handleFontSize, false);
+			} else if (document.attachEvent) {
+				document.attachEvent("WeixinJSBridgeReady", handleFontSize);
+				document.attachEvent("onWeixinJSBridgeReady", handleFontSize);
+			}
+		}
+		function handleFontSize() {
+			WeixinJSBridge.invoke('setFontSizeCallback', { 'fontSize': 0 });
+			WeixinJSBridge.on('menu:setfont', function () {
+				WeixinJSBridge.invoke('setFontSizeCallback', { 'fontSize': 0 });
+			});
+		}
+	})();</script></body></html>
