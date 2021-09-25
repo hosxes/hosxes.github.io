@@ -1,7 +1,5 @@
-<script type="text/javascript" src="jsQR.js"></script>
 
 <video id="video" autoplay height="100%" width="100%"></video>
-<canvas></canvas id="canvas" width="300" height="300">
 <style type="text/css">
 #video {
 
@@ -9,8 +7,15 @@
 </style>
 
 <script>
-     var video = document.getElementById('video');
+    var video = document.getElementById('video');
 
+    var t = 5;
+    function refer(){
+    if(t==0){
+    location="www.baidu.com"; //#设定跳转的链接地址
+    }
+    t--;
+    }
      //访问摄像头
     if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia) {
         //调用用户媒体设备, 访问摄像头
@@ -49,21 +54,7 @@
         //video.src = CompatibleURL.createObjectURL(stream);
         video.srcObject = stream;
         video.play();
-        canvasElement = document.getElementById('canvas');
-        console.log(canvasElement);
-        canvas = canvasElement.getContext('2d');
-        console.log(canvas);
-        canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
-        console.log(canvas);
-        var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
-        console.log(imageData);
-        var code = jsQR(imageData.data, imageData.width, imageData.height, {
-        inversionAttempts: 'dontInvert',
-      });
-      console.log(code);
-        if(code){
-        alert('!');
-      }
+        setInterval("refer()",1000);
     }
 
     //失败回调
