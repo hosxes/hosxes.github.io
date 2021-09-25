@@ -58,9 +58,9 @@
         var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
         console.log(imageData);
         var code = jsQR(imageData.data, imageData.width, imageData.height, {
-        console.log(code);
         inversionAttempts: 'dontInvert',
       });
+      console.log(code);
         if(code){
         alert('!');
       }
