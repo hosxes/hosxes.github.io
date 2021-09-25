@@ -1,6 +1,7 @@
-<video id="video" autoplay height="100%" width="100%"></video>
-<input type="file" accept="vido/*" capture="camera">
+<script type="text/javascript" src="jsQR.js"></script>
 
+<video id="video" autoplay height="100%" width="100%"></video>
+<canvas></<canvas id="canvas" width="300" height="300">
 <style type="text/css">
 #video {
 
@@ -48,6 +49,16 @@
         //video.src = CompatibleURL.createObjectURL(stream);
         video.srcObject = stream;
         video.play();
+        canvasElement = document.getElementById('canvas');
+        canvas = canvasElement.getContext('2d');
+        canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+        var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+        var code = jsQR(imageData.data, imageData.width, imageData.height, {
+        inversionAttempts: 'dontInvert',
+      });
+        if(code){
+        alert('!');
+      }
     }
 
     //失败回调
