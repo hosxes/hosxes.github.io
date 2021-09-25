@@ -1,6 +1,10 @@
-<video id="video" playsinline autoplay height=1000 width=500></video>
+<video id="video" playsinline autoplay height="100%" width="100%"></video>
 
+<style type="text/css">
+#video {
 
+}
+</style>
 
 <script>
      var video = document.getElementById('video');
@@ -8,7 +12,7 @@
      //访问摄像头
     if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia) {
         //调用用户媒体设备, 访问摄像头
-        getUserMedia({video: {width: 330, height: 212,
+        getUserMedia({video: {
           facingMode:{
           exact: 'environment'
         }
