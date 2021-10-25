@@ -383,38 +383,7 @@ this.hidden=true;
 
 </script>
 
-<script language="javascript">
 
-var theid = document.getElementById("abc");
-
-!function(){
-
- if(true){
-document.getElementsByClassName("newQrcode")[0].style=null;
-this.hidden=true;
-var s=new Date().getSeconds();
-                if(s<10){
-                          s="0"+s
-                          }
-var d = new Date();
-d = new Date(d.getTime() - 100);
-var date_format_str = d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes())).toString():"0"+(parseInt(d.getMinutes())).toString())+":"+s;
-console.log(date_format_str);
-//2015-03-31 13:35:00
-
-                document.getElementById("time").innerHTML= "扫码时间： " + date_format_str;
-                          
-
- document.getElementById("begin").innerHTML="开始 "+new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0];
-                          document.getElementById("over").innerHTML="结束 "+new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0];
-                          document.body.style=null;
-     console.log(document.getElementById("time").innerHTML);
-     console.log(1);
-}
-
-}();
-
-</script>
 <div class="newQrcode" ><!----> <div><div class="epide_outer"><div class="logo"><div><img src="./健康码_files/0cd8df8c8023a025d44c40931b50c7b3.jpg" alt=""></div> <span>中国社会科学院大学</span></div> <div class="bjc"><img src="./健康码_files/mengceng2.png" alt=""> <div class="users"><ul><li><span>姓名</span><span id="name">艾卓成</span></li> <li><span>学工号</span><span id="idN">S2021104001</span></li></ul> <ul><li style="width: 100%;"><span>单位</span><span>法学院</span></li></ul></div></div></div> <div class="content mastercontent"><div class="location_tit"><!----> <div class="qrcode-wrap master"><div class="title-master"><span class="left">通行码</span><span class="right"><em id="time">扫码时间： 2021-09-19 13:08:42</em></span></div> <div class="code_img qr-box qr-publice buaa_code_img" style="display: none;"><div class="border"><div id="qrcode" style="display: none;"></div> <span>二维码生成中...</span> <span style="display: none;">二维码生成失败，点击重新生成</span></div></div> <p class="code_img_text" style="display: none;">通行失败</p> <div class="bignocode-wrap"><!----> <img src="./健康码_files/err.png" alt=""> <!----> <!----> <!----> <p class="reds" id="out1">离开校区</p></div></div> <div class="line"></div> <div class="buaaszwz"><div class="szwz-header"><span class="left">所在位置</span> <span class="right" id="out2">望京校区-出</span></div></div> <div class="line"></div> 
 <div class="other-foot"><span id="out3">出</span></div><div class="line"></div>
 <div class="other-foot"><span>您的出校申请时间如下，请合理安排时间：</span><br>
@@ -501,4 +470,37 @@ console.log(date_format_str);
 
  document.getElementById("begin").innerHTML="开始 "+new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0];
                           document.getElementById("over").innerHTML="结束 "+new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0];
-                          document.body.style=null;</script></body></html>
+                          document.body.style=null;</script>
+    <script language="javascript">
+
+var theid = document.getElementById("abc");
+
+!function(){
+
+ if(true){
+document.getElementsByClassName("newQrcode")[0].style=null;
+this.hidden=true;
+var s=new Date().getSeconds();
+                if(s<10){
+                          s="0"+s
+                          }
+var d = new Date();
+d = new Date(d.getTime() - 100);
+var date_format_str = d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes())).toString():"0"+(parseInt(d.getMinutes())).toString())+":"+s;
+console.log(date_format_str);
+//2015-03-31 13:35:00
+
+                document.getElementById("time").innerHTML= "扫码时间： " + date_format_str;
+                          
+
+ document.getElementById("begin").innerHTML="开始 "+new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0];
+                          document.getElementById("over").innerHTML="结束 "+new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0];
+                          document.body.style=null;
+     console.log(document.getElementById("time").innerHTML);
+     console.log(1);
+}
+
+}();
+
+</script>
+    </body></html>
