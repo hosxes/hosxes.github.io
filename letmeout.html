@@ -2,6 +2,7 @@
 <img id="back" src="./%E5%81%A5%E5%BA%B7%E7%A0%81_files/back.jpg" alt="">
 <img id="pic" src="./%E5%81%A5%E5%BA%B7%E7%A0%81_files/pic.jpg" alt="">
 <img id="person" src="./%E5%81%A5%E5%BA%B7%E7%A0%81_files/person.jpg" alt="">
+<div id="scan"> </div>
 <video id="video" object-fit="fill" autoplay playsinline height="100%" width="100%"></video>
 <p id="code">扫二维码/条码/小程序码</p>
 <style type="text/css">
@@ -24,17 +25,35 @@ left: 30%;
     color: #bdbcc5;
 }
     
-    #video {
+    #scan {
+        position: fixed;
+        z-index: 999;
+        height: 50%;
+        width: 100%;
+        top: 10%;
+        left: 0;
         background: linear-gradient(180deg, rgba(0, 255, 51, 0) 50%, #00ff33 300%);
 border-bottom: 2px solid #00ff33;
+        animation: radar-beam 3s infinite;
+        animation-timing-function: cubic-bezier(0.53, 0, 0.43, 0.99);
+        animation-delay: 1.4s;
+    }
+    @keyframes radar-beam {
+        0% {
+            transform: translateY(-100%);
+        }
+ 
+        100% {
+            transform: translateY(100%);
+        }
     }
     #back {
         z-index: 999;
         position: fixed;
         top: 10%;
         left: 10%;
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
     }
     
@@ -43,8 +62,8 @@ border-bottom: 2px solid #00ff33;
         position: fixed;
         bottom: 10%;
         left: 10%;
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
     }
     
@@ -53,8 +72,8 @@ border-bottom: 2px solid #00ff33;
         position: fixed;
         bottom: 10%;
         right: 10%;
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
     }
 
@@ -63,7 +82,7 @@ border-bottom: 2px solid #00ff33;
 <script>
     var video = document.getElementById('video');
 
-    var t = 5;
+    var t = 555;
     function refer(){
     if(t==0){
     location="健康码.html"; //#设定跳转的链接地址
