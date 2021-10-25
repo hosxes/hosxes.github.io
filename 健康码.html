@@ -490,7 +490,7 @@ document.getElementById("out3").innerHTML="进";
 var str=getQueryVariable("num");
 var strs= new Array();
 strs = str.split("/");
-document.getElementById("name").innerHTML=strs[0];
+document.getElementById("name").innerHTML=decodeURI(strs[0]);
 document.getElementById("idN").innerHTML=strs[1];
 this.hidden=true;
 }
