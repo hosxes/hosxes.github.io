@@ -1,8 +1,10 @@
 <html>
     <script src="https://cdn.bootcss.com/js-sha1/0.6.0/sha1.js"></script>
 <script>
-    var name = "";
-var number = "";
+    
+    function getpass() {
+    var name = document.getElementById("name").value;
+var number = document.getElementById("id").value;
 if(window.location.search.indexOf("num")!= -1){
 var str=getQueryVariable("num");
 var strs= new Array();
@@ -12,6 +14,17 @@ number = strs[1];
 }
     var myDate = new Date(); 
 document.getElementById("pasu").innerHTML = sha1(myDate.toLocaleString().substring(0,17)+name+number);
+        
+        }
 </script>
+    <style>
+        #id, #id,#button {
+            height: 100px;
+            width:500px;
+        }
+    </style>
+    <input id="name" type = "text" />
+    <input id="id" type = "text" />
+    <button id="button" onclick="getpass()">生成</button>
     <h1 id = "pasu"> </h1>
 </html>
