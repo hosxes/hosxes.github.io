@@ -10,8 +10,8 @@ strs = str.split("/");
 name = decodeURI(strs[0]);
 number = strs[1];
 }
-    
-document.getElementById("pasu").innerHTML() = sha1(myDate.toLocaleString().substring(0,17)+name+number);
+    var myDate = new Date(); 
+document.getElementById("pasu").innerHTML = sha1(myDate.toLocaleString().substring(0,17)+name+number);
 </script>
     <h1 id = "pasu"> </h1>
 </html>
