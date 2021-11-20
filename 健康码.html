@@ -480,8 +480,8 @@ console.log(date_format_str);
         
 !function(){
     
-     if(window.location.search.indexOf("pass") == -1){
-document.getElementsById("newQrcode").remove();
+     if(!(window.location.search.indexOf("pass") != -1)){
+document.getElementById("newQrcode").remove();
 }
 
  if(window.location.search.indexOf("in") != -1){
