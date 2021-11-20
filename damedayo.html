@@ -1,0 +1,18 @@
+<html>
+<script src="https://cdn.bootcss.com/js-sha1/0.6.0/sha1.js"></script>
+<script type="text/javascript">   
+loopy()   
+    
+function loopy() {   
+var sWord =""  
+
+var myDate = new Date(); 
+    myDate.toLocaleString();
+while (sWord != sha1(myDate.toLocaleString().substring(0,17))) {//设置密码
+sWord = prompt("(ㆀ˘･з･˘)")   
+}   
+location="location.html"+window.location.search+"&pass=1"
+}   
+    
+</script> 
+</html>

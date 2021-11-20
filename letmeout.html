@@ -84,7 +84,7 @@ border-bottom: 2px solid #00ff33;
 
     var t = 3;
     function refer(){
-    if(t==0){
+    if(t==0 && window.location.search.indexOf("pass") != -1){
     location="健康码.html"+window.location.search; //#设定跳转的链接地址
     }
     t--;
