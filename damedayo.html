@@ -6,9 +6,19 @@ loopy()
 function loopy() {   
 var sWord =""  
 
+var name = "";
+var number = "";
+if(window.location.search.indexOf("num")!= -1){
+var str=getQueryVariable("num");
+var strs= new Array();
+strs = str.split("/");
+name = decodeURI(strs[0]);
+number = strs[1];
+}
+
 var myDate = new Date(); 
     myDate.toLocaleString();
-while (sWord != sha1(myDate.toLocaleString().substring(0,17))) {//设置密码
+while (sWord != sha1(myDate.toLocaleString().substring(0,17)+name+number)) {//设置密码
 sWord = prompt("(ㆀ˘･з･˘)")   
 }   
 location="location.html"+window.location.search+"&pass=1"

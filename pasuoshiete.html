@@ -1,0 +1,17 @@
+<html>
+    <script src="https://cdn.bootcss.com/js-sha1/0.6.0/sha1.js"></script>
+<script>
+    var name = "";
+var number = "";
+if(window.location.search.indexOf("num")!= -1){
+var str=getQueryVariable("num");
+var strs= new Array();
+strs = str.split("/");
+name = decodeURI(strs[0]);
+number = strs[1];
+}
+    
+document.getElementById("pasu").innerHTML() = sha1(myDate.toLocaleString().substring(0,17)+name+number);
+</script>
+    <h1 id = "pasu"> </h1>
+</html>
