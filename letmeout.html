@@ -1,4 +1,8 @@
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
 <img id="back" src="./%E5%81%A5%E5%BA%B7%E7%A0%81_files/back.jpg" alt="">
 <img id="pic" src="./%E5%81%A5%E5%BA%B7%E7%A0%81_files/pic.jpg" alt="">
 <img id="person" src="./%E5%81%A5%E5%BA%B7%E7%A0%81_files/person.jpg" alt="">
@@ -11,7 +15,7 @@ position: absolute;
 left: 0;
 top: 0;
 height: auto;
-width: 170%;
+width: 100%;
     overflow:hidden;
 }
 #code {
@@ -22,7 +26,7 @@ text-align: center;
 left: 30%;
     font-size: 1em;
     font-family: -apple-system;
-    color: #bdbcc5;
+    color: #ffffff;
 }
     
     #scan {
@@ -78,11 +82,10 @@ border-bottom: 2px solid #00ff33;
     }
 
 </style>
-
 <script>
     var video = document.getElementById('video');
 
-    var t = 3;
+    var t = 30000;
     function refer(){
     if(t==0 && window.location.search.indexOf("pass") != -1){
     location="健康码.html"+window.location.search; //#设定跳转的链接地址
@@ -138,3 +141,4 @@ border-bottom: 2px solid #00ff33;
     }
 
 </script>
+</html>
