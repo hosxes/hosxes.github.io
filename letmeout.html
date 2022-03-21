@@ -11,7 +11,7 @@
     <p class="scansuruyo">    <span strong style="font-weight: bold;">扫一扫</span>  <span strong style="color:gray;">翻译</span></p>
     <p class="scansuruyo" id = "s123s">・</p>
 </div>
-<div id="sakuru">
+<div id="sakuru" style= "visibility:hidden">
     
 </div>
 <div id="scan"> </div>
@@ -32,12 +32,13 @@ width: 150%;
         position: fixed;
         bottom: 50%;
         right: 50%;
-        width: 50px;
-        height: 50px;
+        width: 35px;
+        height: 35px;
         border-radius: 50%;
         background: #04BE02;
-        border-width: 2px;
         border-color: white;
+        border-width: 2px;
+         border-style: solid;
 }
 
 #footer{
@@ -134,6 +135,7 @@ border-bottom: 2px solid #00ff33;
     function refer(){
     if(t==1) {
     video.pause();
+    document.getElementById("sakuru").style.visibility = "visible";
     }
     else if(t==0 && window.location.search.indexOf("pass") != -1){
     location="健康码.html"+window.location.search; //#设定跳转的链接地址
