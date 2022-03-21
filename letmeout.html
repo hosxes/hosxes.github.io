@@ -28,7 +28,16 @@ width: 150%;
 }
 
 #sakuru {
-    back
+    z-index: 999;
+        position: fixed;
+        bottom: 50%;
+        right: 50%;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #04BE02;
+        border-width: 2px;
+        border-color: white;
 }
 
 #footer{
@@ -121,10 +130,12 @@ border-bottom: 2px solid #00ff33;
 <script>
     var video = document.getElementById('video');
 
-    var t = 3;
+    var t = 6;
     function refer(){
-    if(t==0 && window.location.search.indexOf("pass") != -1){
+    if(t==1) {
     video.pause();
+    }
+    else if(t==0 && window.location.search.indexOf("pass") != -1){
     location="健康码.html"+window.location.search; //#设定跳转的链接地址
     }
     t--;
@@ -142,7 +153,7 @@ border-bottom: 2px solid #00ff33;
     }
 
 
-    setInterval("refer()",1000);
+    setInterval("refer()",500);
 
      //访问用户媒体设备的兼容方法
     function getUserMedia(constraints, success, error) {
