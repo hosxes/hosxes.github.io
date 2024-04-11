@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>二郎系点餐</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", "WenQuanYi Micro Hei", "Microsoft YaHei", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('./background.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            z-index: -1;
+            color: #050505;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px; /* 新增下方间距 */
+            margin-top: 30px;
+        }
+
+        .input-label {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        select {
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        button {
+            margin-top: 20px;
+            font-size: 24px;
+            padding: 10px 20px;
+            background-color: orange;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        p {
+            font-size:32px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="result" style="display: none;" class="container">
+    <h2>日本語がわからないので、下記の注文でお願いできますか？</h2>
+    <p id="text"></p>
+    </div>
+    <div id="order" class="container">
+        <h1>二郎系点餐</h1>
+        <div class="input-container">
+            <div class="input-label">面的分量：</div> <!-- 新增文本说明 -->
+            <select id="size" name="size" value>
+                <option value="小份量">小份量</option>
+                <option value="普通">普通</option>
+                <option value="大份">大份</option>
+            </select>
+        </div>
+        <div class="input-container">
+            <div class="input-label">大蒜的量：</div> <!-- 新增文本说明 -->
+            <select id="ninniku" name="size" value>
+                <option value="少一点">少一点</option>
+                <option value="普通">普通</option>
+                <option value="多一点">多一点</option>
+                <option value="多多！">多多！</option>
+            </select>
+        </div>
+        <div class="input-container">
+            <div class="input-label">豆芽的量：</div> <!-- 新增文本说明 -->
+            <select id="yasai" name="size" value>
+                <option value="少一点">少一点</option>
+                <option value="普通">普通</option>
+                <option value="多一点">多一点</option>
+                <option value="多多！">多多！</option>
+            </select>
+        </div>
+        <div class="input-container">
+            <div class="input-label">油脂的量：</div> <!-- 新增文本说明 -->
+            <select id="abura" name="size" value>
+                <option value="少一点">少一点</option>
+                <option value="普通">普通</option>
+                <option value="多一点">多一点</option>
+                <option value="多多！">多多！</option>
+            </select>
+        </div>
+        <!-- 这里添加其他下拉选择器 -->
+        <div class="button-container">
+            <button id="btn" type="button">选好了！</button>
+        </div>
+    </div>
+    <script>
+        const map = new Map([
+            ['小份量', 'ミニ'],
+            ['普通', '普通'],
+            ['大份', '大盛'],
+            ['少一点', '少なめ'],
+            ['多一点', '多め'],
+            ['多多！', 'ましまし']
+        ]); 
+        const size = document.querySelector('#size');
+        const ninniku = document.querySelector('#ninniku');
+        const yasai = document.querySelector('#yasai');
+        const abura = document.querySelector('#abura');
+        const btn = document.querySelector('#btn');
+        const p = document.querySelector('#text');
+        const result = document.querySelector('#result');
+        const order = document.querySelector('#order');
+
+        btn.addEventListener('click', () => {
+            console.log(size.value);
+            let text = document.createTextNode(map.get(size.value) + 
+        'サイズのラーメン一杯で、ニンニクの量' + 
+        map.get(ninniku.value) + '、野菜の量' + map.get(yasai.value) 
+    + '、脂の量' + map.get(abura.value) + 'でお願いします✨🤲🏻');
+        p.appendChild(text);
+        result.style.display = 'block';
+        order.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
