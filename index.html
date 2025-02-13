@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>URL提取器</title>
+    <title>URL精准提取器</title>
     <style>
+        /* 保持原有样式不变 */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -88,7 +89,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>URL提取器</h1>
+        <h1>URL精准提取器</h1>
         <textarea id="inputText" placeholder="请输入包含URL的文本..."></textarea>
         <button onclick="extractUrls()">提取URL</button>
         <div id="results"></div>
@@ -97,15 +98,16 @@
 
     <script>
         function extractUrls() {
-           const text = document.getElementById('inputText').value;
-            // 改进后的正则表达式，使用更精准的匹配模式
-            const urlRegex = /https?:\/\/[^\s/?#]*(?=[\s，。！？]|$)/gi;
-            const matches = text.match(urlRegex) || [];
+            const text = document.getElementById('inputText').value;
+            // 优化后的正则表达式（重点修改部分）
+            const urlRegex = /https?:\/\/(?:www\.)?[^\s/?#]+(?:\/[^\s?#]*)?(?:\?[^\s#]*)?(?:#\S*)?(?=[\s，。！？]|$)/gi;
+            const rawMatches = text.match(urlRegex) || [];
             
-            // 后处理确保删除尾部标点（双重保障）
-            const urls = matches.map(url => 
-                url.replace(/[，。！？\.,!?]+$/, '')
-            ).filter(url => url.length > 0);
+            // 二次过滤处理
+            const urls = rawMatches.map(url => {
+                // 移除末尾的中英文标点
+                return url.replace(/[.,!?，。！？]+$/, '');
+            }).filter(url => url.length > 5); // 过滤掉无效匹配
 
             const resultsDiv = document.getElementById('results');
             resultsDiv.innerHTML = '';
@@ -124,6 +126,7 @@
             });
         }
 
+        // 保持原有复制功能不变
         function copyToClipboard(text) {
             const textarea = document.createElement('textarea');
             textarea.value = text;
