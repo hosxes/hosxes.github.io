@@ -37,7 +37,7 @@
   <script>
     function extractUrl() {
       const inputText = document.getElementById('inputText').value;
-      const urlRegex = /(https?:\/\/[^\s]+)/g;
+      const urlRegex = /(https?:\/\/[^\s,]+)/g; // 只匹配URL并忽略其他字符
       const resultDiv = document.getElementById('result');
 
       // 使用正则表达式提取URL
