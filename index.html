@@ -97,10 +97,16 @@
 
     <script>
         function extractUrls() {
-            const text = document.getElementById('inputText').value;
-            const urlRegex = /https?:\/\/[^\s/$.?#].[^\s]*/gi;
-            const urls = text.match(urlRegex) || [];
+           const text = document.getElementById('inputText').value;
+            // 改进后的正则表达式，使用更精准的匹配模式
+            const urlRegex = /https?:\/\/[^\s/?#]*(?=[\s，。！？]|$)/gi;
+            const matches = text.match(urlRegex) || [];
             
+            // 后处理确保删除尾部标点（双重保障）
+            const urls = matches.map(url => 
+                url.replace(/[，。！？\.,!?]+$/, '')
+            ).filter(url => url.length > 0);
+
             const resultsDiv = document.getElementById('results');
             resultsDiv.innerHTML = '';
 
