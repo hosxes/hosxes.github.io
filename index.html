@@ -1,66 +1,69 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>高精度URL提取器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提取并复制URL</title>
     <style>
-        /* 保持原有样式不变 */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: -apple-system, sans-serif; padding: 15px; background: #f5f5f5; }
-        /* 其他样式与之前相同 */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .copy-btn {
+            margin-left: 10px;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>高精度URL提取器</h1>
-        <textarea id="inputText" placeholder="粘贴包含URL的文本..."></textarea>
-        <button onclick="extractUrls()">提取URL</button>
-        <div id="results"></div>
-    </div>
-    <div class="toast" id="toast">已复制</div>
+    <h1>提取并复制URL</h1>
+    <input type="text" id="inputString" placeholder="请输入包含链接的字符串">
+    <button onclick="extractURL()">提取URL</button>
+    <div class="result" id="result"></div>
 
     <script>
-        function extractUrls() {
-            const text = document.getElementById('inputText').value;
-            
-            // 最终优化版正则表达式
-            const urlRegex = /https?:\/\/(?:www\.)?(?:[^\s/?#]+\.[^\s/?#]{2,})(?:[^\s?#]*)(?:\?[^\s#]*)?(?:#[^\s]*)?/gi;
-            
-            const matches = text.match(urlRegex) || [];
-            
-            // 精确过滤处理
-            const urls = matches.map(url => {
-                // 移除所有尾部非URL合法字符（包括中文）
-                return url.replace(/[^a-zA-Z0-9-_~:/?#@!$&'()*+,;=.%]+$/g, '');
-            }).filter(url => {
-                // 验证URL格式
-                try {
-                    new URL(url);
-                    return url.length > 10;
-                } catch {
-                    return false;
-                }
-            });
-
-            displayResults(urls);
+        async function copyText(text) {
+            try {
+                await navigator.clipboard.writeText(text);
+                alert("已复制到剪贴板：" + text);
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                alert("复制失败，请手动复制");
+            }
         }
 
-        function displayResults(urls) {
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = urls.length ? 
-                urls.map(url => `<div class="result-item">${url}</div>`).join('') :
-                '<div class="result-item">未找到有效URL</div>';
+        function extractURL() {
+            const inputString = document.getElementById("inputString").value;
+            const urlRegex = /https?:\/\/\S+/;
+            const match = inputString.match(urlRegex);
+            const resultDiv = document.getElementById("result");
 
-            // 添加点击事件
-            document.querySelectorAll('.result-item').forEach((item, index) => {
-                item.onclick = () => copyToClipboard(urls[index]);
-            });
+            if (match) {
+                const url = match[0];
+                resultDiv.innerHTML = `<p>提取的URL：<span id="url">${url}</span></p>
+                                       <button class="copy-btn" onclick="copyText('${url}')">复制到剪贴板</button>`;
+            } else {
+                resultDiv.innerHTML = `<p>未找到有效的URL</p>`;
+            }
         }
-
-        // 保持原有复制功能不变
-        function copyToClipboard(text) { /* 同上 */ }
-        function showToast() { /* 同上 */ }
     </script>
 </body>
 </html>
