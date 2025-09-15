@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>邀请函生成器</title>
-  <!-- Google 开源黑体 -->
+  <!-- Google 开源字体 -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500&display=swap" rel="stylesheet">
   <style>
     body {
@@ -93,40 +93,34 @@
       const canvas = document.getElementById('canvas');
       const ctx = canvas.getContext('2d');
 
-      // 背景
-      ctx.fillStyle = "#fff";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      const img = new Image();
+      img.src = "template.png"; // 你的模板文件名
+      img.onload = function() {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-      // 标题
-      ctx.font = "bold 50px 'Noto Sans SC', sans-serif";
-      ctx.fillStyle = "#222";
-      ctx.textAlign = "center";
-      ctx.fillText("预约成功邀请函", canvas.width / 2, 100);
+        ctx.font = "36px 'Noto Sans SC', sans-serif";
+        ctx.fillStyle = "#333";
+        ctx.textAlign = "center";
 
-      // 正文
-      ctx.font = "36px 'Noto Sans SC', sans-serif";
-      ctx.fillStyle = "#000";
-      ctx.textAlign = "left";
+        const lines = [
+          `${name} ${gender}，感谢您的咨询，你已经成功预约:`,
+          `[BY铁馆•拳击] 地址: 江海商务广场C座13楼`,
+          `[FIT训练课] ${course}`,
+          `[预约时间] ${dateStr}`,
+          `[联系电话] ${phone}`,
+          `[预约教练] ${coach}`
+        ];
 
-      const lines = [
-        `${name} ${gender}，感谢您的咨询，`,
-        `你已经成功预约:`,
-        ``,
-        `[BY铁馆•拳击] 地址: 江海商务广场C座13楼`,
-        `[FIT训练课] ${course}`,
-        `[预约时间] ${dateStr}`,
-        `[联系电话] ${phone}`,
-        `[预约教练] ${coach}`
-      ];
+        // 空白区域大概在 Y=450 到 850 之间
+        const lineHeight = 60;
+        const startY = 480;
+        const centerX = canvas.width / 2;
 
-      const lineHeight = 70;
-      const startY = 220;
-      const marginX = 80; // 左右留白
-
-      lines.forEach((line, i) => {
-        const y = startY + i * lineHeight;
-        ctx.fillText(line, marginX, y);
-      });
+        lines.forEach((line, i) => {
+          const y = startY + i * lineHeight;
+          ctx.fillText(line, centerX, y);
+        });
+      };
     }
   </script>
 </body>
