@@ -71,27 +71,32 @@ async function generate(){
   ctx.fillStyle="#333";
   ctx.textAlign="center";
 
- // 标题
-ctx.fillStyle="#333";
-ctx.textAlign="left";
-ctx.font="bold 28px 'Noto Sans SC'";
+ // 设置字体
+ctx.font = "48px 'Noto Sans SC', sans-serif";  // 原来24，现在翻倍
+ctx.fillStyle = "#000000";
 
-// 第一行（大字）
-const titleText = `${name}${gender}，感谢您的咨询，你已经成功预约:`;
-ctx.fillText(titleText, 80, canvas.height/2 - 80);
-
-// 正文（排版整齐）
-ctx.font="22px 'Noto Sans SC'";
-let details = [
-  "[BY铁馆•拳击] 地址: 江海商务广场C座13楼",
-  `[FIT训练课]: 一对一 (${course}课一节)`,
-  `[预约时间]: ${dateStr}`,
-  "[联系电话]: 18268726040",
-  "[预约教练]: 郑博霞"
+// 准备文字内容
+const lines = [
+  `${name} 女士：`,
+  `您已成功预约`,
+  `时间：${date.toLocaleString('zh-CN', { 
+    year: 'numeric', month: '2-digit', day: '2-digit', 
+    hour: '2-digit', minute: '2-digit', hour12: false 
+  })}`
 ];
 
-details.forEach((line,i)=>{
-  ctx.fillText(line, 80, canvas.height/2 - 30 + i*40);
+// 绘制文字（两端对齐 + 居中）
+const lineHeight = 70;
+const startY = 300;
+const boxWidth = canvas.width * 0.8; // 给文字留个区域
+
+ctx.textAlign = "justify"; // 两端对齐
+ctx.textBaseline = "top";
+
+lines.forEach((line, i) => {
+  const y = startY + i * lineHeight;
+  const x = (canvas.width - boxWidth) / 2; // 区域居中
+  ctx.fillText(line, x, y, boxWidth);
 });
 
   // 输出图片
