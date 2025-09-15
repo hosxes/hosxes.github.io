@@ -98,7 +98,7 @@
       img.onload = function() {
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-        ctx.font = "28px 'Noto Sans SC', sans-serif";
+        ctx.font = "24px 'Noto Sans SC', sans-serif";
         ctx.fillStyle = "#333";
         ctx.textAlign = "center";
 
@@ -109,7 +109,7 @@
 
         // 空白区域大概在 Y=450 到 850 之间
         const lineHeight = 60;
-        const startY = 480;
+        const startY = 440;
         const centerX = canvas.width / 2;
 
         lines.forEach((line, i) => {
@@ -128,9 +128,9 @@
         // 空白区域大概在 Y=450 到 850 之间
         const lineHeight2 = 60;
         const startY2 = 600;
-        const centerX2 = canvas.width / 2;
+        const centerX2 = canvas.width / 2 - 100;
         ctx.textAlign = "left";
-        lines.forEach((line, i) => {
+        lines.forEach((line2, i) => {
           const y = startY2 + i * lineHeight2;
           ctx.fillText(line, centerX, y);
         });
