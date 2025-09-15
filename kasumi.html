@@ -4,6 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>邀请函生成器</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body{font-family:system-ui,Arial; margin:0; padding:16px; background:#fafafa;}
     .card{background:#fff; border-radius:12px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,.1); max-width:400px; margin:auto;}
@@ -12,6 +13,7 @@
     button{margin-top:16px; width:100%; padding:12px; border:none; border-radius:8px; background:#2b6ef6; color:#fff; font-size:16px; font-weight:bold;}
     #preview{margin-top:20px; text-align:center;}
     #preview img{max-width:100%; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.15);}
+    body{font-family:'Noto Sans SC',sans-serif;}
   </style>
 </head>
 <body>
@@ -69,23 +71,28 @@ async function generate(){
   ctx.fillStyle="#333";
   ctx.textAlign="center";
 
-  // 标题文字区域（中间大字）
-  ctx.font="22px SimHei";
-  const text = `${name}${gender}，感谢您的咨询，你已经成功预约:`;
-  ctx.fillText(text, canvas.width/2, canvas.height/2 - 40);
+ // 标题
+ctx.fillStyle="#333";
+ctx.textAlign="left";
+ctx.font="bold 28px 'Noto Sans SC'";
 
-  // 详细信息区域
-  ctx.font="18px SimSun";
-  let details = [
-    "[BY铁馆•拳击] 地址: 江海商务广场C座13楼",
-    `[FIT训练课]: 一对一 (${course}课一节)`,
-    `[预约时间]: ${dateStr}`,
-    "[联系电话]: 18268726040",
-    "[预约教练]: 郑博霞"
-  ];
-  details.forEach((line,i)=>{
-    ctx.fillText(line, canvas.width/2, canvas.height/2 + i*30);
-  });
+// 第一行（大字）
+const titleText = `${name}${gender}，感谢您的咨询，你已经成功预约:`;
+ctx.fillText(titleText, 80, canvas.height/2 - 80);
+
+// 正文（排版整齐）
+ctx.font="22px 'Noto Sans SC'";
+let details = [
+  "[BY铁馆•拳击] 地址: 江海商务广场C座13楼",
+  `[FIT训练课]: 一对一 (${course}课一节)`,
+  `[预约时间]: ${dateStr}`,
+  "[联系电话]: 18268726040",
+  "[预约教练]: 郑博霞"
+];
+
+details.forEach((line,i)=>{
+  ctx.fillText(line, 80, canvas.height/2 - 30 + i*40);
+});
 
   // 输出图片
   const dataUrl = canvas.toDataURL("image/png");
