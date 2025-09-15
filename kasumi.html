@@ -104,12 +104,7 @@
 
         const lines = [
           `${name} ${gender}`,
-          `感谢您的咨询，你已经成功预约:`,
-          `[FIT训练课]                 ${course}`,
-          `[预约时间]                 ${dateStr}`,
-          `[联系电话]                   ${phone}`,
-          `[预约教练]                   ${coach}`,
-          `[BY铁馆•拳击] 地址: 江海商务广场C座13楼`
+          `感谢您的咨询，您已经成功预约:`
         ];
 
         // 空白区域大概在 Y=450 到 850 之间
@@ -119,6 +114,24 @@
 
         lines.forEach((line, i) => {
           const y = startY + i * lineHeight;
+          ctx.fillText(line, centerX, y);
+        });
+
+        const lines2 = [
+          `[FIT训练课] ${course}`,
+          `[预约时间] ${dateStr}`,
+          `[联系电话] ${phone}`,
+          `[预约教练] ${coach}`,
+          `[BY铁馆•拳击] 地址: 江海商务广场C座13楼`
+        ];
+        
+        // 空白区域大概在 Y=450 到 850 之间
+        const lineHeight2 = 60;
+        const startY2 = 600;
+        const centerX = canvas.width / 2;
+        ctx.textAlign = "left";
+        lines.forEach((line, i) => {
+          const y = startY2 + i * lineHeight2;
           ctx.fillText(line, centerX, y);
         });
       };
