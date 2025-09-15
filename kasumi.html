@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>预约邀请函生成器</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -44,7 +46,7 @@
             color: #ccc;
         }
 
-        input, select {
+        input[type="text"], input[type="datetime-local"], select {
             width: 100%;
             padding: 12px;
             border: 1px solid #444;
@@ -100,7 +102,7 @@
 
         #invitation-text-container {
             position: absolute;
-            top: 50%;
+            top: 45%; /* 将文本容器整体上移 */
             left: 10%;
             transform: translateY(-50%);
             width: 70%;
@@ -112,7 +114,7 @@
         }
 
         #invitation-text {
-            font-family: sans-serif;
+            font-family: 'Noto Serif SC', '思源宋体', serif; /* 设置思源宋体 */
             color: white;
             font-size: 1.5vw;
             line-height: 1.6;
@@ -147,7 +149,7 @@
             </select>
             
             <label for="appointmentDate">预约时间:</label>
-            <input type="text" id="appointmentDate" placeholder="如: 2025年09月15日 15:00" required>
+            <input type="datetime-local" id="appointmentDate" required>
             
             <label for="courseContent">体验课内容:</label>
             <input type="text" id="courseContent" value="燃脂私教课" required>
@@ -166,7 +168,6 @@
         </div>
     </div>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const memberNameInput = document.getElementById('memberName');
@@ -181,13 +182,22 @@
             generateBtn.addEventListener('click', () => {
                 const memberName = memberNameInput.value.trim();
                 const memberGender = memberGenderSelect.value;
-                const appointmentDate = appointmentDateInput.value.trim();
+                const appointmentDateTime = appointmentDateInput.value;
                 const courseContent = courseContentInput.value.trim();
 
-                if (!memberName || !appointmentDate || !courseContent) {
+                if (!memberName || !appointmentDateTime || !courseContent) {
                     alert('请填写所有必填信息！');
                     return;
                 }
+                
+                // 将日期时间格式化为 yyyy年mm月dd日 hh时mm分
+                const dateObj = new Date(appointmentDateTime);
+                const year = dateObj.getFullYear();
+                const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+                const day = dateObj.getDate().toString().padStart(2, '0');
+                const hours = dateObj.getHours().toString().padStart(2, '0');
+                const minutes = dateObj.getMinutes().toString().padStart(2, '0');
+                const formattedDate = `${year}年${month}月${day}日 ${hours}时${minutes}分`;
 
                 const invitationContent = 
 `
@@ -195,7 +205,7 @@ ${memberName}${memberGender}, 感谢您的咨询，
 你已经成功预约:
 [BY铁馆·拳击]地址:江海商务广场C座13楼
 [FIT训练课]:一对一 (${courseContent}一节)
-[预约时间]:${appointmentDate}
+[预约时间]:${formattedDate}
 [联系电话]:18268726040
 [预约教练]:郑博霞`;
 
@@ -203,6 +213,7 @@ ${memberName}${memberGender}, 感谢您的咨询，
 
                 outputArea.classList.remove('hidden');
 
+                // 等待图片加载和文本渲染完毕
                 setTimeout(() => {
                     html2canvas(invitationCard, {
                         useCORS: true,
