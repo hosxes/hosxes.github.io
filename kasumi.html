@@ -98,17 +98,18 @@
       img.onload = function() {
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-        ctx.font = "36px 'Noto Sans SC', sans-serif";
+        ctx.font = "28px 'Noto Sans SC', sans-serif";
         ctx.fillStyle = "#333";
         ctx.textAlign = "center";
 
         const lines = [
-          `${name} ${gender}，感谢您的咨询，你已经成功预约:`,
+          `${name} ${gender}`,
+          `感谢您的咨询，你已经成功预约:`,
+          `[FIT训练课]                 ${course}`,
+          `[预约时间]                 ${dateStr}`,
+          `[联系电话]                   ${phone}`,
+          `[预约教练]                   ${coach}`
           `[BY铁馆•拳击] 地址: 江海商务广场C座13楼`,
-          `[FIT训练课] ${course}`,
-          `[预约时间] ${dateStr}`,
-          `[联系电话] ${phone}`,
-          `[预约教练] ${coach}`
         ];
 
         // 空白区域大概在 Y=450 到 850 之间
