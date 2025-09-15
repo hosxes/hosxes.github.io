@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>邀请函生成器</title>
+  <style>
+    body{font-family:system-ui,Arial; margin:0; padding:16px; background:#fafafa;}
+    .card{background:#fff; border-radius:12px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,.1); max-width:400px; margin:auto;}
+    label{display:block; font-size:14px; margin-top:12px;}
+    input, select{width:100%; padding:10px; margin-top:6px; border:1px solid #ddd; border-radius:8px; font-size:16px;}
+    button{margin-top:16px; width:100%; padding:12px; border:none; border-radius:8px; background:#2b6ef6; color:#fff; font-size:16px; font-weight:bold;}
+    #preview{margin-top:20px; text-align:center;}
+    #preview img{max-width:100%; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.15);}
+  </style>
+</head>
+<body>
+<div class="card">
+  <h2 style="text-align:center;">预约邀请函</h2>
+  <label>会员姓名</label>
+  <input id="name" placeholder="输入姓名" />
+
+  <label>性别</label>
+  <select id="gender">
+    <option value="先生">先生</option>
+    <option value="女士">女士</option>
+  </select>
+
+  <label>预约日期</label>
+  <input id="date" type="date"/>
+
+  <label>体验课内容</label>
+  <select id="course">
+    <option value="燃脂私教">燃脂私教</option>
+    <option value="拳击体验">拳击体验</option>
+    <option value="综合格斗">综合格斗</option>
+  </select>
+
+  <button onclick="generate()">生成邀请函</button>
+</div>
+
+<div id="preview">
+  <canvas id="canvas" style="display:none"></canvas>
+  <img id="output" alt="生成的邀请函"/>
+</div>
+
+<script>
+async function generate(){
+  const name = document.getElementById("name").value.trim() || "会员";
+  const gender = document.getElementById("gender").value;
+  const date = document.getElementById("date").value;
+  const course = document.getElementById("course").value;
+
+  if(!date){ alert("请选择预约日期"); return; }
+
+  // 格式化日期 YYYY年MM月DD日
+  const d = new Date(date);
+  const dateStr = `${d.getFullYear()}年${(d.getMonth()+1).toString().padStart(2,'0')}月${d.getDate().toString().padStart(2,'0')}日`;
+
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+
+  // 载入背景模板
+  const bg = await loadImage("template.png"); // 你提供的模板文件放同目录
+  canvas.width = bg.width;
+  canvas.height = bg.height;
+  ctx.drawImage(bg,0,0);
+
+  ctx.fillStyle="#333";
+  ctx.textAlign="center";
+
+  // 标题文字区域（中间大字）
+  ctx.font="22px SimHei";
+  const text = `${name}${gender}，感谢您的咨询，你已经成功预约:`;
+  ctx.fillText(text, canvas.width/2, canvas.height/2 - 40);
+
+  // 详细信息区域
+  ctx.font="18px SimSun";
+  let details = [
+    "[BY铁馆•拳击] 地址: 江海商务广场C座13楼",
+    `[FIT训练课]: 一对一 (${course}课一节)`,
+    `[预约时间]: ${dateStr}`,
+    "[联系电话]: 18268726040",
+    "[预约教练]: 郑博霞"
+  ];
+  details.forEach((line,i)=>{
+    ctx.fillText(line, canvas.width/2, canvas.height/2 + i*30);
+  });
+
+  // 输出图片
+  const dataUrl = canvas.toDataURL("image/png");
+  document.getElementById("output").src = dataUrl;
+}
+
+function loadImage(src){
+  return new Promise((resolve,reject)=>{
+    const img = new Image();
+    img.crossOrigin="anonymous";
+    img.onload=()=>resolve(img);
+    img.onerror=reject;
+    img.src=src;
+  });
+}
+</script>
+</body>
+</html>
