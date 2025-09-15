@@ -1,118 +1,133 @@
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="UTF-8">
   <title>邀请函生成器</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Google 开源黑体 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500&display=swap" rel="stylesheet">
   <style>
-    body{font-family:system-ui,Arial; margin:0; padding:16px; background:#fafafa;}
-    .card{background:#fff; border-radius:12px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,.1); max-width:400px; margin:auto;}
-    label{display:block; font-size:14px; margin-top:12px;}
-    input, select{width:100%; padding:10px; margin-top:6px; border:1px solid #ddd; border-radius:8px; font-size:16px;}
-    button{margin-top:16px; width:100%; padding:12px; border:none; border-radius:8px; background:#2b6ef6; color:#fff; font-size:16px; font-weight:bold;}
-    #preview{margin-top:20px; text-align:center;}
-    #preview img{max-width:100%; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.15);}
-    body{font-family:'Noto Sans SC',sans-serif;}
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input, select {
+      padding: 8px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 30px;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      max-width: 100%;
+    }
   </style>
 </head>
 <body>
-<div class="card">
-  <h2 style="text-align:center;">预约邀请函</h2>
-  <label>会员姓名</label>
-  <input id="name" placeholder="输入姓名" />
+  <h2>预约邀请函生成器</h2>
 
-  <label>性别</label>
+  <label>姓名：</label>
+  <input type="text" id="name" placeholder="请输入姓名">
+
+  <label>性别：</label>
   <select id="gender">
-    <option value="先生">先生</option>
     <option value="女士">女士</option>
+    <option value="先生">先生</option>
   </select>
 
-  <label>预约日期</label>
-  <input id="date" type="date"/>
-
-  <label>体验课内容</label>
+  <label>体验课内容：</label>
   <select id="course">
-    <option value="燃脂私教">燃脂私教</option>
-    <option value="拳击体验">拳击体验</option>
-    <option value="综合格斗">综合格斗</option>
+    <option value="一对一 (燃脂私教课一节)" selected>一对一 (燃脂私教课一节)</option>
+    <option value="一对一 (基础拳击体验课一节)">一对一 (基础拳击体验课一节)</option>
+    <option value="一对一 (力量训练体验课一节)">一对一 (力量训练体验课一节)</option>
   </select>
 
+  <label>预约时间：</label>
+  <input type="datetime-local" id="date">
+
+  <label>联系电话：</label>
+  <input type="text" id="phone" value="18268726040">
+
+  <label>预约教练：</label>
+  <input type="text" id="coach" value="郑博霞">
+
+  <br>
   <button onclick="generate()">生成邀请函</button>
-</div>
 
-<div id="preview">
-  <canvas id="canvas" style="display:none"></canvas>
-  <img id="output" alt="生成的邀请函"/>
-</div>
+  <div id="result">
+    <canvas id="canvas" width="800" height="1200"></canvas>
+  </div>
 
-<script>
-async function generate(){
-  const name = document.getElementById("name").value.trim() || "会员";
-  const gender = document.getElementById("gender").value;
-  const date = document.getElementById("date").value;
-  const course = document.getElementById("course").value;
+  <script>
+    function generate() {
+      const name = document.getElementById('name').value.trim();
+      const gender = document.getElementById('gender').value;
+      const course = document.getElementById('course').value;
+      const dateInput = document.getElementById('date').value;
+      const phone = document.getElementById('phone').value.trim();
+      const coach = document.getElementById('coach').value.trim();
 
-  if(!date){ alert("请选择预约日期"); return; }
+      if (!name || !dateInput) {
+        alert("请填写姓名和时间！");
+        return;
+      }
 
-  // 格式化日期 YYYY年MM月DD日
-  const d = new Date(date);
-  const dateStr = `${d.getFullYear()}年${(d.getMonth()+1).toString().padStart(2,'0')}月${d.getDate().toString().padStart(2,'0')}日`;
+      const date = new Date(dateInput);
+      const dateStr = date.toLocaleString('zh-CN', {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hour12: false
+      });
 
-  const canvas = document.getElementById("canvas");
-  const ctx = canvas.getContext("2d");
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
 
-  // 载入背景模板
-  const bg = await loadImage("template.png"); // 你提供的模板文件放同目录
-  canvas.width = bg.width;
-  canvas.height = bg.height;
-  ctx.drawImage(bg,0,0);
+      // 背景
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.fillStyle="#333";
-  ctx.textAlign="center";
+      // 标题
+      ctx.font = "bold 50px 'Noto Sans SC', sans-serif";
+      ctx.fillStyle = "#222";
+      ctx.textAlign = "center";
+      ctx.fillText("预约成功邀请函", canvas.width / 2, 100);
 
- // 设置字体
-ctx.font = "48px 'Noto Sans SC', sans-serif";  // 原来24，现在翻倍
-ctx.fillStyle = "#000000";
+      // 正文
+      ctx.font = "36px 'Noto Sans SC', sans-serif";
+      ctx.fillStyle = "#000";
+      ctx.textAlign = "left";
 
-// 准备文字内容
-const lines = [
-  `${name} 女士：`,
-  `您已成功预约`,
-  `时间：${date.toLocaleString('zh-CN', { 
-    year: 'numeric', month: '2-digit', day: '2-digit', 
-    hour: '2-digit', minute: '2-digit', hour12: false 
-  })}`
-];
+      const lines = [
+        `${name} ${gender}，感谢您的咨询，`,
+        `你已经成功预约:`,
+        ``,
+        `[BY铁馆•拳击] 地址: 江海商务广场C座13楼`,
+        `[FIT训练课] ${course}`,
+        `[预约时间] ${dateStr}`,
+        `[联系电话] ${phone}`,
+        `[预约教练] ${coach}`
+      ];
 
-// 绘制文字（两端对齐 + 居中）
-const lineHeight = 70;
-const startY = 300;
-const boxWidth = canvas.width * 0.8; // 给文字留个区域
+      const lineHeight = 70;
+      const startY = 220;
+      const marginX = 80; // 左右留白
 
-ctx.textAlign = "justify"; // 两端对齐
-ctx.textBaseline = "top";
-
-lines.forEach((line, i) => {
-  const y = startY + i * lineHeight;
-  const x = (canvas.width - boxWidth) / 2; // 区域居中
-  ctx.fillText(line, x, y, boxWidth);
-});
-
-  // 输出图片
-  const dataUrl = canvas.toDataURL("image/png");
-  document.getElementById("output").src = dataUrl;
-}
-
-function loadImage(src){
-  return new Promise((resolve,reject)=>{
-    const img = new Image();
-    img.crossOrigin="anonymous";
-    img.onload=()=>resolve(img);
-    img.onerror=reject;
-    img.src=src;
-  });
-}
-</script>
+      lines.forEach((line, i) => {
+        const y = startY + i * lineHeight;
+        ctx.fillText(line, marginX, y);
+      });
+    }
+  </script>
 </body>
 </html>
